@@ -412,9 +412,17 @@ static inline void ftKb_DkSpecialNStart_Coll_inline(Fighter_GObj* gobj)
 void ftKb_DkSpecialNStart_Anim(Fighter_GObj* gobj)
 {
     if (!ftAnim_IsFramesRemaining(gobj)) {
-        Fighter_ChangeMotionState(gobj, ftKb_MS_DkSpecialNLoop, 0, 0.0F, 1.0F,
-                                  0.0F, NULL);
-        ftKb_DkSpecialNStart_Coll_inline(gobj);
+        Fighter* fp;
+        extern f32 ftKb_Init_804D9490;
+        extern f32 ftKb_Init_804D9494;
+        Fighter_ChangeMotionState(gobj, ftKb_MS_DkSpecialNLoop, 0,
+                                  ftKb_Init_804D9490, ftKb_Init_804D9494,
+                                  ftKb_Init_804D9490, NULL);
+        fp = GET_FIGHTER(gobj);
+        fp->death2_cb = ftKb_Init_800EE74C;
+        fp->take_dmg_cb = ftKb_Init_800EE7B8;
+        fp->pre_hitlag_cb = efLib_PauseAll;
+        fp->post_hitlag_cb = efLib_ResumeAll;
     }
 }
 

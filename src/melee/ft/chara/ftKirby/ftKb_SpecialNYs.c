@@ -256,19 +256,17 @@ static void fn_801095DC(HSD_GObj* gobj)
 
 static void fn_80109680(HSD_GObj* gobj)
 {
-    int new_var;
-    Fighter* new_var2;
     Fighter* fp = GET_FIGHTER(gobj);
-    new_var = 1;
+    Fighter* fp2;
+    PAD_STACK(8);
     Fighter_ChangeMotionState(gobj, ftKb_MS_YsSpecialNCapture1_0, 0x81092,
                               fp->cur_anim_frame, 1.0f, 0.0f, NULL);
-    fp->x2222_b2 = new_var;
+    fp->x2222_b2 = true;
     ftCommon_8007E2F4(fp, 0x1FF);
     ftCommon_8007E2FC(gobj);
-    fp = GET_FIGHTER(gobj);
-    new_var2 = fp;
-    new_var2->death2_cb = ftKb_Init_800EE74C;
-    fp->take_dmg_cb = ftKb_Init_800EE7B8;
+    fp2 = gobj->user_data;
+    fp2->death2_cb = ftKb_Init_800EE74C;
+    fp2->take_dmg_cb = ftKb_Init_800EE7B8;
 }
 
 static void fn_80109714(HSD_GObj* gobj)

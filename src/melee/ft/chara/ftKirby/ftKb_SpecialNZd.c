@@ -157,20 +157,26 @@ void ftKb_ZdSpecialN_Anim(Fighter_GObj* gobj)
 
 void ftKb_ZdSpecialAirN_Anim(Fighter_GObj* gobj)
 {
+    int var0;
     Fighter* fp;
+    int zero;
+    int var1;
     ftKb_DatAttrs* da;
 
     fp = GET_FIGHTER(gobj);
     da = fp->dat_attrs;
 
-    if (fp->cmd_vars[0] == 1U) {
-        fp->cmd_vars[0] = 2U;
+    if (fp->cmd_vars[0] == 1) {
+        fp->cmd_vars[0] = 2;
         ftColl_CreateReflectHit(gobj, &da->specialn_zd_reflectdesc,
                                 fn_80105FEC);
     }
 
-    if (fp->cmd_vars[0] == 0) {
-        fp->reflecting = false;
+    var1 = 0;
+    zero = var1;
+    var0 = var1;
+    if (fp->cmd_vars[var0] == 0) {
+        fp->reflecting = zero;
     }
 
     if (!ftAnim_IsFramesRemaining(gobj)) {

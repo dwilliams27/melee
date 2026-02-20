@@ -146,8 +146,9 @@ void un_802FF1B4(void)
 {
     un_803F9E08.x0.b0 = 1;
     un_803F9E08.x0.b1 = 0;
-    un_804D6DA0 = lbArchive_80016DBC("IfCoGet.dat", &un_804D6DA4,
-                                     "ScInfCgt_scene_data", 0);
+    un_804D6DA0 = lbArchive_80016DBC((char*) &un_803F9E08 + 0x10,
+                                     &un_804D6DA4,
+                                     (char*) &un_803F9E08 + 0x1C, 0);
     un_802FEFAC();
 }
 

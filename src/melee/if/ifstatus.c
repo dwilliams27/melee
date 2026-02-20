@@ -605,18 +605,18 @@ static inline HSD_GObj* nth_node(HSD_GObj* node, s32 n)
 /// https://decomp.me/scratch/XGFpw
 HSD_GObj* ifStatus_802F6194(HSD_GObj* node, s32 n)
 {
-    HSD_GObj* gx;
+    s32 i;
 
     if ((node == NULL) || (n < 0)) {
         return NULL;
     }
-    if (node == NULL) {
-        gx = NULL;
-    } else {
-        gx = node->next_gx;
+    node = (node == NULL) ? NULL : node->next_gx;
+    i = 0;
+    while (i < n && node != NULL) {
+        node = (node == NULL) ? NULL : node->next;
+        i++;
     }
-    gx = nth_node(gx, n);
-    return gx;
+    return node;
 }
 
 void ifStatus_802F61FC(void)

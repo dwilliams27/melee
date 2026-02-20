@@ -1456,7 +1456,7 @@ void ftKb_SpecialN_800F5BA4(Fighter* fp)
 {
     ftKb_DatAttrs* da = fp->dat_attrs;
     if ((s32) fp->kind == FTKIND_KIRBY &&
-        (s32) fp->fv.kb.hat.kind != FTKIND_KIRBY && !fp->fv.kb.xF4_b0 &&
+        (s32) fp->fv.kb.hat.kind != FTKIND_KIRBY && !fp->fv.kb.hat.x8_b0 &&
         (u32) fp->victim_gobj == 0U && (u32) fp->dmg.x1860_element != 0xAU &&
         HSD_Randi((s32) da->specialn_odds_lose_ability_on_hit) == 0)
     {

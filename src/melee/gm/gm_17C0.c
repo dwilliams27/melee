@@ -1044,10 +1044,20 @@ extern HSD_Archive* lbl_804D65C8;
 
 void gm_80181998(void)
 {
-    lbl_804D65C8 = lbArchive_80016DBC("IfHrNoCn", &lbl_804D65CC,
-                                      "ScInfCnt_scene_models", 0);
-    lbl_804D65C8 = lbArchive_80016DBC("IfHrReco", &lbl_804D65D0,
-                                      "ScInfCnt_scene_models", 0);
+    static const struct {
+        char ifhrnocn[0xC];
+        char scinfcnt[0x18];
+        char ifhrreco[0xC];
+    } lbl_803D8CD8 ATTRIBUTE_ALIGN(4) = {
+        "IfHrNoCn",
+        "ScInfCnt_scene_models",
+        "IfHrReco",
+    };
+
+    lbl_804D65C8 = lbArchive_80016DBC(lbl_803D8CD8.ifhrnocn, &lbl_804D65CC,
+                                      lbl_803D8CD8.scinfcnt, 0);
+    lbl_804D65C8 = lbArchive_80016DBC(
+        lbl_803D8CD8.ifhrreco, &lbl_804D65D0, lbl_803D8CD8.ifhrnocn + 0xC, 0);
     fn_80181708();
 }
 
