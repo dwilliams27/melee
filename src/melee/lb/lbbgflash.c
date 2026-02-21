@@ -155,7 +155,7 @@ void lbBgFlash_80020688(int count)
 
 /// #lbBgFlash_800206D4
 
-void lbBgFlash_InitState(int* duration)
+void fn_8002087C(int* duration)
 {
     lbl_80433658.state.active = 0;
     lbl_80433658.state.mode = 5;

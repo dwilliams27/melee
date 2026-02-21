@@ -1172,7 +1172,7 @@ end:
 /// #fn_800262A0
 
 /// @brief Free an object from the audio allocator pool.
-void lbAudioAx_ObjFree(void* obj)
+void fn_800263B4(void* obj)
 {
     if (obj != NULL) {
         void* p = obj;

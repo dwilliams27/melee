@@ -96,14 +96,21 @@ void itTomato_Logic9_Spawned(Item_GObj* gobj)
 
 void itTomato_Logic9_Destroyed(Item_GObj* gobj)
 {
+    typedef struct SignedBit {
+        s8 b0 : 1;
+    } SignedBit;
+
     Item* item = GET_ITEM(gobj);
-    // if ((((temp_r4->xDD4_itemVar.Egg.filler[4] << 0x18) & 0xC0000000) >>
-    //      0x1F) != 0)
-    // {
-    //     M2C_FIELD(
-    //         (&gm_80473A18 + M2C_BITWISE(s32,
-    //         temp_r4->xDD4_itemVar.star.x8)), s8*, 0x90) = 0;
-    // }
+    extern u8 gm_80473A18[];
+    u8* base;
+
+    if (((SignedBit*) &item->xDD4_itemVar.tomato.x4)->b0 == 0) {
+        return;
+    }
+
+    base = gm_80473A18;
+    base += item->xDD4_itemVar.tomato.x8;
+    base[0x90] = 0;
 }
 
 void it_80284358(Item_GObj* gobj)

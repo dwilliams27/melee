@@ -902,6 +902,15 @@ bool fn_800D952C(Fighter_GObj* gobj)
 
 /// #ftCo_800D9C98
 
+static void fn_800D9C64(Fighter_GObj* gobj)
+{
+    Fighter* fp = GET_FIGHTER(gobj);
+
+    if (fp->kind == FTKIND_SAMUS) {
+        it_802B7B84(fp->fv.ss.x223C);
+    }
+}
+
 void fn_800D9CE8(Fighter_GObj* arg0)
 {
     NOT_IMPLEMENTED;
@@ -1294,6 +1303,18 @@ void fn_800DC014(Fighter_GObj* gobj)
             fp->mv.co.capturewait.xC = true;
         }
     }
+}
+
+bool fn_800DC044(Fighter_GObj* gobj)
+{
+    Fighter* fp = gobj->user_data;
+    f32 val = *(f32*) ((u8*) fp + 0x624);
+    f32 threshold = *(f32*) ((u8*) p_ftCommonData + 0x70);
+
+    if (val >= threshold) {
+        return true;
+    }
+    return false;
 }
 
 /// #fn_800DC044
