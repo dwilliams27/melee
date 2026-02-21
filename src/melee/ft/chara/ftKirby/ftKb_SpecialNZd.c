@@ -269,6 +269,10 @@ void ftKb_SpecialNSk_80105F3C(Fighter_GObj* gobj)
     }
 }
 
+void fn_80105FEC(Fighter_GObj* gobj)
+{
+}
+
 bool ftKb_SpecialNSk_80105FF0(Fighter_GObj* gobj)
 {
     Fighter* ft = GET_FIGHTER(gobj);
