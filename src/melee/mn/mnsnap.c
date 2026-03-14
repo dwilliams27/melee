@@ -407,10 +407,14 @@ void mnSnap_80253AE4(s32 mode)
 
 /// Processes D-pad/trigger inputs to navigate a 2D grid of snapshots.
 /// @returns 0 if no movement, 1 if moved within page, 2 if page changed.
+#pragma push
+#pragma opt_propagation off
 s32 mnSnap_80253BE0(u64 buttons, s32* cursor, s32 count)
 {
     s32 cur = *cursor;
     s32 next = cur;
+
+    PAD_STACK(8);
 
     if (buttons & 1) {
         if ((next & 1) == 1) {
@@ -435,7 +439,7 @@ s32 mnSnap_80253BE0(u64 buttons, s32* cursor, s32 count)
         if (next >= 4) {
             next -= 4;
         } else {
-            next = ((count - 1) & ~3) + (cur % 4);
+            next = ((count - 1) & ~3) + (next % 4);
             if (next >= count) {
                 next &= ~3;
             }
@@ -462,6 +466,7 @@ s32 mnSnap_80253BE0(u64 buttons, s32* cursor, s32 count)
     }
     return 2;
 }
+#pragma pop
 
 /// Renders the main content GObj only when in photo-browsing states (>= 4).
 void fn_80253DB4(HSD_GObj* gobj, s32 rendermode)
