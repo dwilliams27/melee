@@ -570,12 +570,12 @@ void mnSnap_80254014(void)
 /// Configures the Yes/No dialog button positions based on language setting.
 void mnSnap_8025409C(HSD_JObj* jobj_flag)
 {
+    HSD_JObj** p38;
     mnSnap_State* snap = &mnSnap_804A0A10;
+    HSD_JObj** p39;
+    s32* p5E;
     HSD_JObj* left;
     HSD_JObj* right;
-    s32* p5E;
-    HSD_JObj** p38;
-    HSD_JObj** p39;
 
     snap->dlg_type = (s32) jobj_flag;
 
@@ -590,8 +590,7 @@ void mnSnap_8025409C(HSD_JObj* jobj_flag)
     p39 = &snap->no_jobj;
     HSD_JObjClearFlags(*p39, 0x10);
 
-    p5E = &snap->btn_idx;
-    *p5E = 0;
+    *(p5E = &snap->btn_idx) = 0;
 
     if ((s32) jobj_flag == 1) {
         left = *p38;
@@ -605,21 +604,8 @@ void mnSnap_8025409C(HSD_JObj* jobj_flag)
         *p5E = 1;
     }
 
-    if (left == NULL) {
-        __assert("jobj.h", 0x3A4, "jobj");
-    }
-    left->translate.x = -3.5F;
-    if (!(left->flags & JOBJ_MTX_INDEP_SRT)) {
-        HSD_JObjSetMtxDirty(left);
-    }
-
-    if (right == NULL) {
-        __assert("jobj.h", 0x3A4, "jobj");
-    }
-    right->translate.x = +3.5F;
-    if (!(right->flags & JOBJ_MTX_INDEP_SRT)) {
-        HSD_JObjSetMtxDirty(right);
-    }
+    HSD_JObjSetTranslateX(left, -3.5F);
+    HSD_JObjSetTranslateX(right, +3.5F);
 
     {
         f32 f;
