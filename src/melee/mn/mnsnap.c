@@ -2295,23 +2295,35 @@ void fn_80257D7C(void)
             if (mnSnap_804A0A10.sub_gobj != NULL) {
                 HSD_GObjPLink_80390228(mnSnap_804A0A10.sub_gobj);
             }
-            if (snap->cursor_gobj != NULL) {
+            if (mnSnap_804A0A10.cursor_gobj != NULL) {
                 HSD_GObjPLink_80390228(mnSnap_804A0A10.cursor_gobj);
             }
             if (mnSnap_804A0A10.warn_gobj != NULL) {
                 HSD_GObjPLink_80390228(mnSnap_804A0A10.warn_gobj);
             }
 
-            for (i = 0; i < 4; i++) {
-                if (mnSnap_804A0A10.thumb_labels[i] != NULL) {
-                    HSD_SisLib_803A5CC4(mnSnap_804A0A10.thumb_labels[i]);
-                }
+            {
+                mnSnap_State* p = snap;
+                i = 0;
+                do {
+                    if (p->thumb_labels[0] != NULL) {
+                        HSD_SisLib_803A5CC4(p->thumb_labels[0]);
+                    }
+                    i++;
+                    p = (mnSnap_State*) ((u8*) p + 4);
+                } while (i < 4);
             }
 
-            for (i = 0; i < 2; i++) {
-                if (mnSnap_804A0A10.count_texts[i] != NULL) {
-                    HSD_SisLib_803A5CC4(mnSnap_804A0A10.count_texts[i]);
-                }
+            i = 0;
+            {
+                mnSnap_State* p = snap;
+                do {
+                    if (p->count_texts[0] != NULL) {
+                        HSD_SisLib_803A5CC4(p->count_texts[0]);
+                    }
+                    i++;
+                    p = (mnSnap_State*) ((u8*) p + 4);
+                } while (i < 2);
             }
 
             if (mnSnap_804A0A10.page_text != NULL) {
